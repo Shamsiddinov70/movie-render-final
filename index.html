@@ -42,23 +42,47 @@
             </ul>
         </div>
 
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="about-movie" id="exampleModalLabel">About movie</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="modal-img d-block mx-auto mb-3" src="" alt="image">
+                        <h3 class="modal-title text-center"></h3>
+                        <p class="modal-summary"></p>
+                        <a href="" class="modal-link">You tube link</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="wrapper d-flex flex-wrap">
             <template id="template">
                 <div class="card mx-2 my-3 shadow-lg border-2 border" style="width: 18rem;">
                     <img src="https://picsum.photos/200/100" class="card-img-top" alt="image" loading="lazy">
                     <div class="card-body">
-                        <h5 class="card-title text-danger">Card title</h5>
-                        <p class="card-text text-success">Some quick example text to build on the card title and make up
-                            the bulk of
-                            the
-                            card's content.</p>
+                        <h5 class="card-title text-danger text-truncate"></h5>
+                        <p class="card-text text-success text-truncate"></p>
 
                         <p class="js-year text-primary"></p>
-                        <p class="js-rating text-warning"></p>
+                        <p class="js-rating text-warning mb-5"></p>
 
                         <button
                             class="bookmark-btn btn btn-outline-success font-weight-bold js-movie-bookmark js-bookmark">♥
                             Bookmark
+                        </button>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-primary js-more" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            See more
                         </button>
                     </div>
                 </div>

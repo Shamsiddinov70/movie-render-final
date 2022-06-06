@@ -11,6 +11,9 @@ let elPrevBtn = document.querySelector('.prev-btn');
 let elNextBtn = document.querySelector('.next-btn');
 let elBookmarkTemplate = document.getElementById('bookmark-template').content;
 let bookmarkList = document.querySelector('.bookmark-list');
+let modalTitle = document.querySelector('.modal-title');
+let modalSummary = document.querySelector('.modal-summary');
+let modalImg = document.querySelector('.modal-img');
 
 let page = 1;
 let limit = 8;
@@ -32,8 +35,10 @@ let renderMovies = (arr) => {
         let rating = elCard.querySelector('.js-rating');
 
         let elBookmarkBtn = elCard.querySelector('.js-bookmark');
+        let moreBtn = elCard.querySelector('.js-more');
 
         elBookmarkBtn.dataset.id = movie.imdbId;
+        moreBtn.dataset.id = movie.imdbId;
 
         title.textContent = movie.title;
         categories.textContent = movie.categories;
@@ -208,8 +213,6 @@ let renderBookmarks = (arr) => {
         bookmarkTitle.textContent = bookmark.title;
 
         bookmarkFragment.appendChild(bookmarkClone);
-        console.log(bookmark);
-        console.log(bookmarkClone);
     });
     bookmarkList.innerHTML = null;
     bookmarkList.appendChild(bookmarkFragment);
@@ -229,6 +232,16 @@ let handleWrapper = (evt) => {
 
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
         renderBookmarks(bookmarks);
+    }
+    else if (evt.target.matches('.js-more')) {
+        let foundMovie = KINOLAR.find((movie) => movie.imdbId === evt.target.dataset.id
+        );
+
+        modalTitle.textContent = foundMovie.title;
+        modalSummary.textContent = foundMovie.summary;
+        modalImg.src = foundMovie.smallPoster;
+        modalImg.width = '270'
+        modalImg.height = '170';
     }
 }
 
