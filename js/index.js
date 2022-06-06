@@ -14,6 +14,8 @@ let bookmarkList = document.querySelector('.bookmark-list');
 let modalTitle = document.querySelector('.modal-title');
 let modalSummary = document.querySelector('.modal-summary');
 let modalImg = document.querySelector('.modal-img');
+let modalLink = document.querySelector('.modal-link');
+
 
 let page = 1;
 let limit = 8;
@@ -242,6 +244,7 @@ let handleWrapper = (evt) => {
         modalImg.src = foundMovie.smallPoster;
         modalImg.width = '270'
         modalImg.height = '170';
+        modalLink.href = foundMovie.trailer;
     }
 }
 
