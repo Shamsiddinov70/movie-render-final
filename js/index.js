@@ -9,6 +9,7 @@ let elTemplate = document.getElementById('template').content;
 let elPageCounter = document.querySelector('.page-counter');
 let elPrevBtn = document.querySelector('.prev-btn');
 let elNextBtn = document.querySelector('.next-btn');
+let bookmarkWrapper = document.getElementById('bookmark-wrapper');
 let elBookmarkTemplate = document.getElementById('bookmark-template').content;
 let bookmarkList = document.querySelector('.bookmark-list');
 let modalTitle = document.querySelector('.modal-title');
@@ -207,13 +208,26 @@ let handlePrevPage = () => {
 
 let bookmarkFragment = document.createDocumentFragment();
 
+
 let renderBookmarks = (arr) => {
     arr.forEach((bookmark) => {
         let bookmarkClone = elBookmarkTemplate.cloneNode(true);
 
         let bookmarkTitle = bookmarkClone.querySelector('.bookmark-title');
-        bookmarkTitle.textContent = bookmark.title;
+        let item = bookmarkClone.querySelector('.item');
 
+
+        let modalRemoveBtn = bookmarkClone.querySelector('.modal-remove-btn');
+        modalRemoveBtn.dataset.id = bookmark.imdbId;
+
+        let handleRemove = (evt) => {
+            console.log('remove');
+            item.innerHTML = null;
+        }
+
+        modalRemoveBtn.addEventListener('click', handleRemove);
+
+        bookmarkTitle.textContent = bookmark.title;
         bookmarkFragment.appendChild(bookmarkClone);
     });
     bookmarkList.innerHTML = null;
@@ -246,7 +260,8 @@ let handleWrapper = (evt) => {
         modalImg.height = '170';
         modalLink.href = foundMovie.trailer;
     }
-}
+};
+
 
 elWarapper.addEventListener('click', handleWrapper);
 elPrevBtn.addEventListener('click', handlePrevPage);
